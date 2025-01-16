@@ -1,4 +1,4 @@
-#!/bin/bash/env python3
+#!/bin/bash/python3
 import sys
 
-print("Programming is like building a multilingual puzzle")
+print("Programming is like building a multilingual puzzle\n")
