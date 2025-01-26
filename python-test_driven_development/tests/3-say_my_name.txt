@@ -6,7 +6,7 @@ My name is John Smith
 My name is Walter White
 
 >>> say_my_name("Bob")
-My name is Bob 
+My name is Bob
 
 >>> say_my_name(12, "White")
 Traceback (most recent call last):
@@ -17,7 +17,7 @@ Traceback (most recent call last):
 TypeError: last_name must be a string
 
 >>> say_my_name("Eve", "")
-My name is Eve 
+My name is Eve
 
 >>> say_my_name("Anna", None)
 Traceback (most recent call last):
