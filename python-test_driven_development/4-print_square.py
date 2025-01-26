@@ -29,4 +29,3 @@ def print_square(size=None):
 
     for _ in range(size):
         print("#" * size)
-
