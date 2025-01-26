@@ -53,4 +53,3 @@ def matrix_divided(matrix, div):
 
     # Create a new matrix with rounded division results
     return [[round(el / div, 2) for el in row] for row in matrix]
-
