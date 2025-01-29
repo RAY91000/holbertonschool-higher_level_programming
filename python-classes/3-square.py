@@ -11,6 +11,10 @@ class Square:
     """
 
     def __init__(self, size=0):
+        """
+        Initializes a square with an optional size.
+
+        """
 
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
