@@ -4,6 +4,7 @@ A class to represent a square.
 
 """
 
+
 class Square:
     """
     A class that defines a square with a private instance attribute: size.
@@ -28,4 +29,3 @@ class Square:
 
         """
         return self.__size ** 2
-
