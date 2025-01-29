@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """
-An empty class that defines a square.
-
+    A class representing a square.
 """
 
-    class Square:
+
+class Square:
     pass
