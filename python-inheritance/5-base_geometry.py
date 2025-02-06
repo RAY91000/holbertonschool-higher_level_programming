@@ -7,4 +7,3 @@ Empty class BaseGeometry.
 class BaseGeometry:
     """An empty class for geometry."""
     pass
-
