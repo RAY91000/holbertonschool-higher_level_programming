@@ -1,50 +1,67 @@
 #!/usr/bin/python3
-
-from flask import Flask, jsonify, request
+'''
+This module contains simple API using Python Flask
+'''
+from flask import Flask
+from flask import jsonify
+from flask import request
+import json
 
 app = Flask(__name__)
-
-users = {
-    "jane": {
-        "username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"
-        },
-    "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
-}
 
 
 @app.route("/")
 def home():
+    """Displays home message"""
     return "Welcome to the Flask API!"
+
+
+all_users = {}
+
+
+@app.route("/data")
+def data():
+    """Returns username list"""
+    return jsonify(list(all_users.keys()))
 
 
 @app.route("/status")
 def status():
+    """Returns OK status if no error"""
     return "OK"
 
 
-@app.route("/data")
-def get_usernames():
-    return jsonify(list(users.keys()))
-
-
 @app.route("/users/<username>")
-def get_user(username):
-    user = users.get(username)
-    if user:
-        return jsonify(user)
-    return jsonify({"error": "User not found"}), 404
+def users(username):
+    """Returns user data"""
+    if username in all_users:
+        user_data = all_users[username]
+        return app.response_class(
+            json.dumps(user_data, indent=4, sort_keys=False),
+            content_type='application/json'
+        )
+    else:
+        return jsonify({"error": "User not found"}), 404
 
 
 @app.route("/add_user", methods=["POST"])
 def add_user():
-    data = request.get_json()
-    username = data.get("username")
-
+    """Adds new user data and returns it"""
+    new_user = request.get_json()
+    username = new_user.get("username")
     if not username:
-        return jsonify({"error": "Username is required"}), 400
+        return ({"error": "Username is required"}), 400
 
-    users[username] = data
-    return jsonify({"message": "User added", "user": data}), 201
+    all_users[username] = new_user
+    response = {
+        "message": "User added",
+        "user": all_users[new_user["username"]]
+    }
+
+    return app.response_class(
+        json.dumps(response, indent=4, sort_keys=False),
+        content_type='application/json'
+    ), 201
 
 
 if __name__ == "__main__":
